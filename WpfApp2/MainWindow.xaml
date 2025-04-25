@@ -5,27 +5,167 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp2"
         mc:Ignorable="d"
-        Title="MainWindow" Height="400" Width="500">
+        Title="Регистарация" 
+        MaxHeight="460" 
+        MaxWidth="500"
+        MinHeight="460"
+        MinWidth="500"
+>
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="AliceBlue"/>
+            <Setter Property="Foreground" Value="#555555"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="Margin" Value="0,20,0,0"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect BlurRadius="10" ShadowDepth="0" Color="#555555"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="Background" Value="#F0F0F0"/>
+            <Setter Property="BorderBrush" Value="#CCCCCC"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Padding" Value="6"/>
+            <Setter Property="Margin" Value="0,0,0,20"/>
+        </Style>
+        <Style TargetType="PasswordBox">
+            <Setter Property="Background" Value="#F0F0F0"/>
+            <Setter Property="BorderBrush" Value="#CCCCCC"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Padding" Value="6"/>
+            <Setter Property="Margin" Value="0,0,0,20"/>
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Foreground" Value="#555555"/>
+            <Setter Property="Margin" Value="0,0,0,5"/>
+        </Style>
+    </Window.Resources>
     <Grid>
-        <Label Content="Registration Form" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,20,0,0" FontSize="18"/>
+        <StackPanel>
+            <Label Content="Регистрация" 
+                   HorizontalAlignment="Center" 
+                   VerticalAlignment="Top" 
+                   Margin="0,20,0,0" 
+                   FontSize="28"/>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.2*"></ColumnDefinition>
+                    <ColumnDefinition Width="0.3*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                
+                <Label Grid.Row="0" 
+                       Grid.Column="1" 
+                       Content="Фамилия:" 
+                       HorizontalAlignment="Left"  
+                       VerticalAlignment="Top" />
+                
+                <TextBox Grid.Row="0"
+                         Grid.Column="2" 
+                         x:Name="txtLastname" 
+                         HorizontalAlignment="Center"  
+                         VerticalAlignment="Top"  
+                         Width="200"/>
 
-        <Label Content="Lastame:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="50,80,0,0"/>
-        <TextBox x:Name="txtLastname" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="50,80,0,0" Width="200"/>
+                <Label Grid.Row="1"
+                       Grid.Column="1"
+                       Content="Имя:" 
+                       HorizontalAlignment="Left" 
+                       VerticalAlignment="Top" />
 
-        <Label Content="Name:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="50,120,0,0"/>
-        <TextBox x:Name="txtN" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="50,120,0,0" Width="200"/>
+                <TextBox Grid.Row="1"
+                         Grid.Column="2" 
+                         x:Name="txtN" 
+                         HorizontalAlignment="Center" 
+                         VerticalAlignment="Top" 
+                         Width="200"/>
 
-        <Label Content="Patronymic:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin=" 50, 160, 0, 0"/>
-        <TextBox x:Name="txtPatronym" HorizontalAlignment="Center" VerticalAlignment="Top"  Margin="50,160,0,0" Width="200"/>
+                <Label Grid.Row="2"
+                       Grid.Column="1" 
+                       Content="Отчество:" 
+                       HorizontalAlignment="Left" 
+                       VerticalAlignment="Top"/>
+                
+                <TextBox Grid.Row="2"
+                         Grid.Column="2" 
+                         x:Name="txtPatronym" 
+                         HorizontalAlignment="Center" 
+                         VerticalAlignment="Top"                           
+                         Width="200"/>
 
-        <Label Content="Password:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="50,200,0,0"/>
-        <PasswordBox x:Name="txtPassword" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="50,200,0,0" Width="200"/>
+                <Label Grid.Row="3"
+                       Grid.Column="1" 
+                       Content="Пароль:" 
+                       HorizontalAlignment="Left" 
+                       VerticalAlignment="Top"/>
+                
+                <PasswordBox Grid.Row="3" 
+                             Grid.Column="2" 
+                             x:Name="txtPassword" 
+                             HorizontalAlignment="Center" 
+                             VerticalAlignment="Top" 
+                             Width="200"/>
 
-        <Button Content="Register" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,275,0,0" Width="100" Click="ButtonClick"/>
+                <Label Grid.Row="4"
+                       Grid.Column="1" 
+                       Content="Пол:" 
+                       HorizontalAlignment="Left" 
+                       VerticalAlignment="Top"/>
+                <StackPanel Grid.Row="4"
+                            Grid.Column="2"
+                            Width="200">
+                    
+                    <CheckBox Content="Мужчина" 
+                              HorizontalAlignment="Left"  
+                              VerticalAlignment="Top"/>
 
-        <Button Content="Already have an account? Login" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,320,0,0" Width="200" Click="ButtonClick"/>
-        <CheckBox Content="Male" HorizontalAlignment="Left" Margin="175,246,0,0" VerticalAlignment="Top"/>
-        <CheckBox Content="Female" HorizontalAlignment="Left" Margin="292,246,0,0" VerticalAlignment="Top"/>
+                    <CheckBox Content="Женщина" 
+                              HorizontalAlignment="Left"  
+                              VerticalAlignment="Top"/>
+
+                </StackPanel>
+                
+
+
+
+
+            </Grid>
+
+            <Button Content="Зарегистрироваться" 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Top" 
+                    Width="176" 
+                    Click="ButtonClick"/>
+            <Button Content="Уже есть аккаунт. Войти" 
+                    Width="200" 
+                    Click="ButtonClick"/>
+
+        </StackPanel>
+
+
+
+
+        
+
+        
+        
+
+        
+        
+        
 
     </Grid>
 </Window>
