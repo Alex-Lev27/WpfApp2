@@ -26,7 +26,7 @@ namespace WpfApp2
             InitializeComponent();
         }
 
-        private void OnClick(object sender, RoutedEventArgs e)
+        private void ButtonCLick(object sender, RoutedEventArgs e)
         {
             MainWindow mainWindow = new MainWindow();
             mainWindow.Show();

@@ -5,19 +5,93 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp2"
         mc:Ignorable="d"
-        Title="Loggin" Height="400" Width="500">
-    <Grid>
-        <Label Content="Authorization" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,20,0,0" FontSize="18"/>
+        Title="Авторизация" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize" SizeToContent="WidthAndHeight">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="AliceBlue"/>
+            <Setter Property="Foreground" Value="#555555"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="Margin" Value="0,20,0,0"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect BlurRadius="8" ShadowDepth="0" Color="#555555"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="Background" Value="#F0F0F0"/>
+            <Setter Property="BorderBrush" Value="#CCCCCC"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Padding" Value="6"/>
+            <Setter Property="Width" Value="300"/>
+            <Setter Property="Margin" Value="0,10,0,10"/>
+        </Style>
+        <Style TargetType="PasswordBox">
+            <Setter Property="Background" Value="#F0F0F0"/>
+            <Setter Property="BorderBrush" Value="#CCCCCC"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Padding" Value="6"/>
+            <Setter Property="Margin" Value="0,10,0,10"/>
+            <Setter Property="Width" Value="300"/>
+        </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Foreground" Value="#555555"/>
+            <Setter Property="Margin" Value="5,0,10,5"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+    </Window.Resources>
+    <Grid Margin="20,20,20,20">
+        <StackPanel>
+            <TextBlock Text="Авторизация" 
+               HorizontalAlignment="Center" 
+               VerticalAlignment="Top" 
+               Margin="0,20,0,20" 
+               FontSize="28"/>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
 
-        <Label Content="Name:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="50,120,0,0"/>
-        <TextBox x:Name="txtN" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,120,0,0" Width="200"/>
+                <TextBlock Grid.Row="4"
+                           Grid.Column="0" 
+                           Text="Пароль:"/> 
 
-        <Label Content="Password:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="50,200,0,0"/>
-        <PasswordBox x:Name="txtPassword" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,200,0,0" Width="200"/>
+                <PasswordBox Grid.Row="4" 
+                             Grid.Column="2" 
+                             x:Name="txtPassword"/>
 
-        <Button Content="Login" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,250,0,0" Width="100" Click="OnClick" />
+                <TextBlock Text="Табельный номер:"
+                           Grid.Row="3"
+                           Grid.Column="0" 
+                           TextWrapping="Wrap"/>
 
-        <Button Content="Dont have account? Registration" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,297,0,0" Width="200" Click="OnClick" />
+                <TextBox x:Name="tabelbNumber"
+                     Grid.Row="3"
+                     Grid.Column="2"/>
+                
+            </Grid>
+
+            <Button Content="Войти" 
+                    Width="176"/>
+
+            <Button Content="Нет аккаунта. Зарегистрироваться" 
+                    Click="ButtonCLick" 
+                    Width="300"/>
+
+        </StackPanel>
 
     </Grid>
 </Window>
