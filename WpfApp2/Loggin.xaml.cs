@@ -33,5 +33,13 @@ namespace WpfApp2
 
             Close();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            WorkWindow workWindow = new WorkWindow();;
+            workWindow.Show();
+
+            Close();
+        }
     }
 }

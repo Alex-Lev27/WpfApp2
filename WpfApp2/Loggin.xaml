@@ -85,7 +85,7 @@
             </Grid>
 
             <Button Content="Войти" 
-                    Width="176"/>
+                    Width="176" Click="Button_Click"/>
 
             <Button Content="Нет аккаунта. Зарегистрироваться" 
                     Click="ButtonCLick" 
