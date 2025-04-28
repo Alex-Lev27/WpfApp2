@@ -23,5 +23,25 @@ namespace WpfApp2
         {
             InitializeComponent();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            txtLastname.IsEnabled = true;
+            txtName.IsEnabled = true;
+            txtPatronym.IsEnabled = true;
+            txtPassword.IsEnabled = true;
+            txtTabelbNumber.IsEnabled = true;
+            txtPost.IsEnabled = true;
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            txtLastname.IsEnabled = false;
+            txtName.IsEnabled = false;
+            txtPatronym.IsEnabled = false;
+            txtPassword.IsEnabled = false;
+            txtTabelbNumber.IsEnabled = false;
+            txtPost.IsEnabled = false;
+        }
     }
 }
