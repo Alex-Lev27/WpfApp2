@@ -47,30 +47,44 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        
+        <Style TargetType="ToolBarTray">
+            <Setter Property="Margin" Value="2,2,2,2"/>
+        </Style>
+        
+        <Style TargetType="DataGrid">
+            <Setter Property="Margin" Value="2,2,2,2"/>
+            <Setter Property="AutoGenerateColumns" Value="False"/>
+        </Style>
+
 
     </Window.Resources>
     <Grid>
         <TabControl Margin="5,5,5,5">
+            
             <TabItem Width="0"/>
-            <TabItem Header="Остатки" >
-                <DataGrid AutoGenerateColumns="True">
+            
+            <TabItem Header="Остатки товаров" >
+                <DataGrid x:Name="StockDataGrid" 
+                          ItemsSource="{Binding Products}"
+                          IsReadOnly="True">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Артикул"/>
-                        <DataGridTextColumn Header="Наименование"/>
-                        <DataGridTextColumn Header="Категория"/>
-                        <DataGridTextColumn Header="Цена"/>
-                        <DataGridTextColumn Header="Остаток"/>
-                        <DataGridTextColumn Header="Приозводитель"/>
-                        <DataGridTextColumn Header="Страна производитель"/>
-                        <DataGridTextColumn Header="Вес"/>
-                        <DataGridTextColumn Header="Объем"/>
-                        <DataGridTextColumn Header="Комментарий"/>
+                        <DataGridTextColumn Header="Номер" Binding="{Binding Id}"/>
+                        <DataGridTextColumn Header="Наименование" Binding="{Binding Name}"/>
+                        <DataGridTextColumn Header="Категория" Binding="{Binding Category.Name}"/>
+                        <DataGridTextColumn Header="Приозводитель" Binding="{Binding Manufacturer.Name}"/>
+                        <DataGridTextColumn Header="Страна производитель" Binding="{Binding Country.Name}"/>
+                        <DataGridTextColumn Header="Остаток" Binding="{Binding Stock}"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </TabItem>
+            
+            
+            
+            
             <TabItem Header="Заказы клиентов">
                 <StackPanel>
-                    <ToolBarTray Margin="2,2,2,2">
+                    <ToolBarTray>
                         <ToolBar>
                             <Button Content="Добавить"/>
                             <Button Content="Удалить"/>
@@ -78,26 +92,29 @@
                             <Button Content="Изменить"/>
                         </ToolBar>
                     </ToolBarTray>
-                    <DataGrid AutoGenerateColumns="True" Margin="2,2,2,2">
+                    <DataGrid ItemsSource="{Binding ClientOrders}"
+                              IsReadOnly="True">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Номер"/>
-                            <DataGridTextColumn Header="Дата создания"/>
-                            <DataGridTextColumn Header="Клиент"/>
-                            <DataGridTextColumn Header="Дата выполнения"/>
-                            <DataGridTextColumn Header="Сумма"/>
-                            <DataGridTextColumn Header="Ответственный"/>
-                            <DataGridTextColumn Header="Адрес грузополучателя"/>
-                            <DataGridTextColumn Header="Статус"/>
-                            <DataGridTextColumn Header="Комментарий"/>
+                            <DataGridTextColumn Header="Номер" Binding="{Binding Id}"/>
+                            <DataGridTextColumn Header="Контрагент" Binding="{Binding Contragent.Name}"/>
+                            <DataGridTextColumn Header="Дата создания" Binding="{Binding CreationDate}"/>
+                            <DataGridTextColumn Header="Дата выполнения" Binding="{Binding ExecutionDate}"/>
+                            <!--Как вывести Фамилия И.О.  ответственного?-->
+                            <DataGridTextColumn Header="Ответственный" Binding="{Binding Employee.Name}"/>
+                            <DataGridTextColumn Header="Статус" Binding="{Binding Status.Name}"/>
+                            <DataGridTextColumn Header="Комментарий" Binding="{Binding Comment}"/>
                         </DataGrid.Columns>
 
                     </DataGrid>
                 </StackPanel>
-
             </TabItem>
-            <TabItem Header="Заказы поставщику" IsSelected="True">
+            
+            
+            
+                      
+            <TabItem Header="Заказы поставщику">
                 <StackPanel>
-                    <ToolBarTray Margin="2,2,2,2">
+                    <ToolBarTray>
                         <ToolBar>
                             <Button Content="Добавить"/>
                             <Button Content="Удалить"/>
@@ -105,62 +122,51 @@
                             <Button Content="Изменить"/>
                         </ToolBar>
                     </ToolBarTray>
-                    <DataGrid AutoGenerateColumns="True" Margin="2,2,2,2">
+                    <DataGrid ItemsSource="{Binding SupplierOrders}"
+                              IsReadOnly="True">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Номер"/>
-                            <DataGridTextColumn Header="Дата создания"/>
-                            <DataGridTextColumn Header="Поставщик"/>
-                            <DataGridTextColumn Header="Дата выполнения"/>
-                            <DataGridTextColumn Header="Сумма"/>
-                            <DataGridTextColumn Header="Ответственный"/>
-                            <DataGridTextColumn Header="Статус"/>
-                            <DataGridTextColumn Header="Комментарий"/>
+                            <DataGridTextColumn Header="Номер" Binding="{Binding Id}"/>
+                            <DataGridTextColumn Header="Контрагент" Binding="{Binding Contragent.Name}"/>
+                            <DataGridTextColumn Header="Дата создания" Binding="{Binding CreationDate}"/>
+                            <DataGridTextColumn Header="Дата выполнения" Binding="{Binding ExecutionDate}"/>
+                            <DataGridTextColumn Header="Ответственный" Binding="{Binding Employee.Name}"/>
+                            <DataGridTextColumn Header="Статус" Binding="{Binding Status.Name}"/>
+                            <DataGridTextColumn Header="Комментарий" Binding="{Binding Comment}"/>
                         </DataGrid.Columns>
-
                     </DataGrid>
                 </StackPanel>
             </TabItem>
-            <TabItem Header="Клиенты">
+            
+            
+            
+            
+            <TabItem Header="Контрагенты">
                 <StackPanel>
-                    <ToolBarTray Margin="2,2,2,2">
+                    <ToolBarTray>
                         <ToolBar>
                             <Button Content="Добавить"/>
                             <Button Content="Удалить"/>
                             <Button Content="Изменить"/>
                         </ToolBar>
                     </ToolBarTray>
-                    <DataGrid AutoGenerateColumns="True" Margin="2,2,2,2">
+                    <DataGrid ItemsSource="{Binding Contragents}"
+                              IsReadOnly="True">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Клиент"/>
-                            <DataGridTextColumn Header="E-mail"/>
-                            <DataGridTextColumn Header="Телефон"/>
-                            <DataGridTextColumn Header="Адрес"/>
-                            <DataGridTextColumn Header="Комментарий"/>
+                            <DataGridTextColumn Header="Название" Binding="{Binding Name}"/>
+                            <DataGridTextColumn Header="E-mail" Binding="{Binding Email}"/>
+                            <DataGridTextColumn Header="Телефон" Binding="{Binding PhoneNum}"/>
+                            <DataGridTextColumn Header="Адрес" Binding="{Binding Address}"/>
+                            <DataGridTextColumn Header="Комментарий" Binding="{Binding Comment}"/>
                         </DataGrid.Columns>
                     </DataGrid>
                 </StackPanel>
             </TabItem>
-            <TabItem Header="Поставщики">
-                <StackPanel>
-                    <ToolBarTray Margin="2,2,2,2">
-                        <ToolBar>
-                            <Button Content="Добавить"/>
-                            <Button Content="Удалить"/>
-                            <Button Content="Изменить"/>
-                        </ToolBar>
-                    </ToolBarTray>
-                    <DataGrid AutoGenerateColumns="True" Margin="2,2,2,2">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="Поставщик"/>
-                            <DataGridTextColumn Header="E-mail"/>
-                            <DataGridTextColumn Header="Телефон"/>
-                            <DataGridTextColumn Header="Адрес"/>
-                            <DataGridTextColumn Header="Комментарий"/>
-                        </DataGrid.Columns>
-                    </DataGrid>
-                </StackPanel>
-            </TabItem>
-            <TabItem Header="Профиль" IsSelected="True">
+            
+            
+            
+            
+            
+            <TabItem Header="Профиль">
                 <StackPanel HorizontalAlignment="Center" Width="600" Margin="0,50,0,0" >
                     <Grid VerticalAlignment="Top">
                         <Grid.RowDefinitions>
@@ -195,7 +201,7 @@
                 </Grid>
                 <Button Content="Изменить" Click="Button_Click"/>
                 <Button Content="Сохранить" Click="Button_Click_1"/>
-                <Button Content="Выйти из профиля"/>
+                <Button Content="Выйти из профиля" Click="Button_Click_2"/>
                 </StackPanel>
                 
             </TabItem>

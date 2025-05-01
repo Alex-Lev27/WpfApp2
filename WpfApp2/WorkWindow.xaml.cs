@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WpfApp2.ViewModels;
 
 namespace WpfApp2
 {
@@ -22,6 +23,7 @@ namespace WpfApp2
         public WorkWindow()
         {
             InitializeComponent();
+            DataContext = new MainViewModel();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -42,6 +44,14 @@ namespace WpfApp2
             txtPassword.IsEnabled = false;
             txtTabelbNumber.IsEnabled = false;
             txtPost.IsEnabled = false;
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            Loggin loggin = new Loggin();
+            loggin.Show();
+
+            Close();
         }
     }
 }
