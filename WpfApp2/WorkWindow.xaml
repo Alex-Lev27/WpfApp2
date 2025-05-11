@@ -3,10 +3,13 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WpfApp2"
+        xmlns:local="clr-namespace:WpfApp2" xmlns:viewmodels="clr-namespace:WpfApp2.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:MainViewModel}"
         mc:Ignorable="d"
         Title="Склад" Height="1080" Width="1920" WindowState="Maximized">
     <Window.Resources>
+        <Style x:Key="DataGridButton">
+            <Setter Property="Button.Margin" Value="2"/>
+        </Style>
         <Style TargetType="TabItem">
             <Setter Property="FontSize" Value="20"/>
         </Style>
@@ -59,6 +62,9 @@
 
 
     </Window.Resources>
+    
+    
+    
     <Grid>
         <TabControl Margin="5,5,5,5">
             
@@ -84,25 +90,50 @@
             
             <TabItem Header="Заказы клиентов">
                 <StackPanel>
+                    
                     <ToolBarTray>
                         <ToolBar>
-                            <Button Content="Добавить"/>
-                            <Button Content="Удалить"/>
-                            <Button Content="Провести"/>
-                            <Button Content="Изменить"/>
+                            <Button Content="Добавить новый заказ"
+                                    Command="{Binding AddClientOrderCommand}"/>
                         </ToolBar>
                     </ToolBarTray>
-                    <DataGrid ItemsSource="{Binding ClientOrders}"
-                              IsReadOnly="True">
+                    
+                    <DataGrid x:Name="ClientOrdersDataGrid"
+                              ItemsSource="{Binding ClientOrders}"
+                              CanUserAddRows="False">
+                        
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Номер" Binding="{Binding Id}"/>
+                            <DataGridTextColumn Header="Номер" Binding="{Binding Id}" IsReadOnly="True"/>
                             <DataGridTextColumn Header="Контрагент" Binding="{Binding Contragent.Name}"/>
                             <DataGridTextColumn Header="Дата создания" Binding="{Binding CreationDate}"/>
                             <DataGridTextColumn Header="Дата выполнения" Binding="{Binding ExecutionDate}"/>
                             <!--Как вывести Фамилия И.О.  ответственного?-->
-                            <DataGridTextColumn Header="Ответственный" Binding="{Binding Employee.Name}"/>
-                            <DataGridTextColumn Header="Статус" Binding="{Binding Status.Name}"/>
+                            <DataGridTextColumn Header="Ответственный" Binding="{Binding Employee.Name}" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="Статус" Binding="{Binding Status.Name}" IsReadOnly="True"/>
                             <DataGridTextColumn Header="Комментарий" Binding="{Binding Comment}"/>
+                            <DataGridTemplateColumn Header="Действия">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+
+                                        <StackPanel Orientation="Horizontal">
+                                            <Button Content="🖋️"
+                                                    Command="{Binding DataContext.EditClientOrderCommand,
+                                                    RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                                    CommandParameter="{Binding}"
+                                                    Style="{StaticResource DataGridButton}"/>
+
+                                            <Button Content="✖️"
+                                                    Command="{Binding DataContext.DeleteClientOrderCommand,
+                                                    RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                                    CommandParameter="{Binding}"
+                                                    Style="{StaticResource DataGridButton}"/>
+                                            
+                                        </StackPanel>
+                                        
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            
                         </DataGrid.Columns>
 
                     </DataGrid>

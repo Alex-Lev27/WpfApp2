@@ -5,7 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp2"
         mc:Ignorable="d"
-        Title="Регистарация" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize" SizeToContent="WidthAndHeight"
+        Title="Регистарация" 
+        WindowStartupLocation="CenterScreen" 
+        ResizeMode="CanMinimize" 
+        SizeToContent="WidthAndHeight"
 >
     <Window.Resources>
         <Style TargetType="Button">
